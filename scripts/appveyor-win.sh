@@ -30,7 +30,7 @@ ninja
 ninja install
 cd ../..
 
-wget https://www.firedaemon.com/download-firedaemon-openssl-3.1-zip && 7z x openssl-3.1.*.zip
+wget https://download.firedaemon.com/FireDaemon-OpenSSL/openssl-3.1.2.zip && 7z x openssl-3.1.*.zip
 
 wget https://www.libsdl.org/release/SDL2-devel-2.26.2-VC.zip && 7z x SDL2-devel-2.26.2-VC.zip
 export SDL_ROOT="$BUILD_ROOT/SDL2-2.26.2"
