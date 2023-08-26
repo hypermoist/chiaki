@@ -7,7 +7,7 @@ BUILD_ROOT="$(echo $BUILD_ROOT | sed 's|^/\([a-z]\)|\1:|g')" # replace /c/... by
 echo "BUILD_ROOT=$BUILD_ROOT"
 
 mkdir ninja && cd ninja
-wget https://github.com/ninja-build/ninja/releases/download/v1.9.0/ninja-win.zip && 7z x ninja-win.zip
+wget https://github.com/ninja-build/ninja/releases/download/v1.11.1/ninja-win.zip && 7z x ninja-win.zip
 cd ..
 
 mkdir yasm && cd yasm
@@ -18,7 +18,7 @@ export PATH="$PWD/ninja:$PWD/yasm:/c/Qt/5.12/msvc2017_64/bin:$PATH"
 
 scripts/build-ffmpeg.sh . --target-os=win64 --arch=x86_64 --toolchain=msvc
 
-git clone https://github.com/xiph/opus.git && cd opus && git checkout ad8fe90db79b7d2a135e3dfd2ed6631b0c5662ab
+git clone https://github.com/xiph/opus.git && cd opus && git checkout 9fc8fc4cf432640f284113ba502ee027268b0d9f
 mkdir build && cd build
 cmake \
 	-G Ninja \
@@ -30,7 +30,7 @@ ninja
 ninja install
 cd ../..
 
-wget https://download.firedaemon.com/FireDaemon-OpenSSL/openssl-1.1.1s.zip && 7z x openssl-1.1.*.zip
+wget https://www.firedaemon.com/download-firedaemon-openssl-3.1-zip && 7z x openssl-3.1.*.zip
 
 wget https://www.libsdl.org/release/SDL2-devel-2.26.2-VC.zip && 7z x SDL2-devel-2.26.2-VC.zip
 export SDL_ROOT="$BUILD_ROOT/SDL2-2.26.2"
@@ -50,7 +50,7 @@ PYTHON="C:/Python37/python.exe"
 
 QT_PATH="C:/Qt/5.15/msvc2019_64"
 
-COPY_DLLS="$PWD/openssl-1.1/x64/bin/libcrypto-1_1-x64.dll $PWD/openssl-1.1/x64/bin/libssl-1_1-x64.dll $SDL_ROOT/lib/x64/SDL2.dll"
+COPY_DLLS="$PWD/openssl-3/x64/bin/libcrypto-3-x64.dll $PWD/openssl-3/x64/bin/libssl-3-x64.dll $SDL_ROOT/lib/x64/SDL2.dll"
 
 echo "-- Configure"
 
@@ -62,7 +62,7 @@ cmake \
 	-DCMAKE_C_COMPILER=cl \
 	-DCMAKE_C_FLAGS="-we4013" \
 	-DCMAKE_BUILD_TYPE=RelWithDebInfo \
-	-DCMAKE_PREFIX_PATH="$BUILD_ROOT/ffmpeg-prefix;$BUILD_ROOT/opus-prefix;$BUILD_ROOT/openssl-1.1/x64;$QT_PATH;$SDL_ROOT" \
+	-DCMAKE_PREFIX_PATH="$BUILD_ROOT/ffmpeg-prefix;$BUILD_ROOT/opus-prefix;$BUILD_ROOT/openssl-3/x64;$QT_PATH;$SDL_ROOT" \
 	-DPYTHON_EXECUTABLE="$PYTHON" \
 	-DCHIAKI_ENABLE_TESTS=ON \
 	-DCHIAKI_ENABLE_CLI=OFF \

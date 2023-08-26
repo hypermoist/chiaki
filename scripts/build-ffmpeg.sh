@@ -5,7 +5,7 @@ cd "./$1"
 shift
 ROOT="`pwd`"
 
-TAG=n4.3.1
+TAG=n6.0
 
 git clone https://git.ffmpeg.org/ffmpeg.git --depth 1 -b $TAG && cd ffmpeg || exit 1
 
